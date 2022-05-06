@@ -1,0 +1,8 @@
+/** Basic config file **/
+
+configuration {
+  show-icons:         true;
+  icon-theme:         "ePapirus-Dark";
+  font:               "JetBrainsMono NF 12";
+}
+@theme "slate"
