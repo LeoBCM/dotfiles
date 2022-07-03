@@ -47,10 +47,10 @@ end
 
 -- {{{ Variable definitions
 -- Themes define colours, icons, font and wallpapers.
-beautiful.init("/home/leobcm/.config/awesome/themebcm.lua")
+beautiful.init("/home/leobcm/.config/awesome/themes/whittaker.lua")
 
 -- This is used later as the default terminal and editor to run.
-terminal = "alacritty"
+terminal = "kitty"
 editor = "code"
 editor_cmd = "nano"
 
@@ -64,8 +64,8 @@ modkey = "Mod4"
 -- Table of layouts to cover with awful.layout.inc, order matters.
 awful.layout.layouts = {
     -- awful.layout.suit.floating,
-    awful.layout.suit.fair,
-    awful.layout.suit.fair.horizontal,
+    -- awful.layout.suit.fair,
+    -- awful.layout.suit.fair.horizontal,
     awful.layout.suit.tile,
     -- awful.layout.suit.tile.left,
     awful.layout.suit.tile.bottom,
@@ -113,7 +113,7 @@ menubar.utils.terminal = terminal -- Set the terminal for applications that requ
     theme = 'naughty',
     placement = 'top_right',
     start_sunday = true,
-    radius = 0, 
+    radius = 2, 
  })
  mytextclock:connect_signal("button::press",
     function(_, _, _, button)
@@ -180,7 +180,7 @@ awful.screen.connect_for_each_screen(function(s)
     set_wallpaper(s)
 
     -- Each screen has its own tag table.
-    awful.tag({ "1", "2", "3", "4", "5", "6", "7", "8", "9" }, s, awful.layout.layouts[1])
+    awful.tag({ " 1 ", " 2 ", " 3 ", " 4 ", " 5 ", " 6 ", " 7 ", " 8 ", " 9 " }, s, awful.layout.layouts[1])
 
     -- Create a promptbox for each screen
     s.mypromptbox = awful.widget.prompt()
@@ -207,7 +207,7 @@ awful.screen.connect_for_each_screen(function(s)
     }
 
     -- Create the wibox
-    s.mywibox = awful.wibar({ position = "top", screen = s })
+    s.mywibox = awful.wibar({ position = "top", screen = s, height = 26, })
 
     -- Add widgets to the wibox
     s.mywibox:setup {
@@ -229,6 +229,9 @@ awful.screen.connect_for_each_screen(function(s)
     }
 end)
 -- }}}
+
+-- Change icons to 32x32px instead of 16x16px
+awesome.set_preferred_icon_size(32)
 
 -- {{{ Mouse bindings
 root.buttons(gears.table.join(
@@ -319,7 +322,7 @@ globalkeys = gears.table.join(
               {description = "decrease master width factor", group = "layout"}),
     awful.key({ modkey, "Shift"   }, "h",     function () awful.tag.incnmaster( 1, nil, true) end,
               {description = "increase the number of master clients", group = "layout"}),
-    awful.key({ modkey, "Shift"   }, "l",     function () awful.tag.incnmaster(-1, nil, true) end,
+    awful.key({ modkey, "Shift"   }, "g",     function () awful.tag.incnmaster(-1, nil, true) end,
               {description = "decrease the number of master clients", group = "layout"}),
     awful.key({ modkey, "Control" }, "h",     function () awful.tag.incncol( 1, nil, true)    end,
               {description = "increase the number of columns", group = "layout"}),
@@ -345,7 +348,7 @@ globalkeys = gears.table.join(
     awful.key({ modkey },            "b",     function () awful.spawn('firefox') end,
               {description = "launch browser", group = "launcher"}),
 
-    awful.key({ modkey },            "v",     function () awful.spawn('caja') end,
+    awful.key({ modkey },            "v",     function () awful.spawn('nemo') end,
               {description = "launch file manager", group = "launcher"}),
 
     awful.key({ modkey },            "c",     function () awful.spawn('gnome-calculator') end,
@@ -611,3 +614,5 @@ awful.spawn.with_shell("pgrep xscreensaver || xscreensaver --no-splash")
 
 -- Widgets/Applets
 awful.spawn.with_shell("pgrep volumeicon || volumeicon")
+awful.spawn.with_shell("pgrep connman-gtk || connman-gtk")
+-- END
