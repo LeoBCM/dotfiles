@@ -1,4 +1,0 @@
-setmonitor.sh
-setkeys.sh
-/usr/lib/mate-polkit/polkit-mate-authentication-agent-1 &
-exec awesome
